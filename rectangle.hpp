@@ -7,8 +7,6 @@ inline void drawRect(cv::Mat &img, cv::Point2d const &tl, cv::Point2d const &tr,
     drawLine(img, tr, br);
     drawLine(img, br, bl);
     drawLine(img, bl, tl);
-    // drawLine(img, bl, br);
-    // drawLine(img, tl, bl);
 }
 
 inline void drawRectangle(cv::Mat &img, cv::Point2d const &tl,
