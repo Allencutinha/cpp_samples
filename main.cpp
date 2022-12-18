@@ -1,8 +1,7 @@
 #include "circle.hpp"
 #include "line.hpp"
+#include "rectangle.hpp"
 #include <opencv2/opencv.hpp>
-
-void test_rectangle() {}
 
 void help() {
     std::cout << "Enter a valid input option" << std::endl;
@@ -20,7 +19,7 @@ int main(int argc, char **argv) {
     } else if (0 == std::strcmp("c", argv[1])) {
         test_circle();
     } else if (0 == std::strcmp("r", argv[1])) {
-
+        test_rectangle();
     } else {
         help();
     }

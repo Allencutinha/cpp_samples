@@ -4,5 +4,5 @@ cd build
 make
 ./exe l
 ./exe c
-./exe d
+./exe r
 cd ..

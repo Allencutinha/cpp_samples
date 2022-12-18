@@ -70,5 +70,5 @@ inline void test_line() {
     drawLine(img, cv::Point2d(100, 300), cv::Point2d(300, 500));
 
     cv::imshow("test-lines", img);
-    cv::waitKey(0);
+    cv::waitKey(2000);
 }

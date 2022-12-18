@@ -17,5 +17,5 @@ inline void test_circle() {
     cv::Mat img = cv::Mat::zeros(400, 800, CV_8UC3);
     drawCircle(img, cv::Point2d(200, 400), 50);
     cv::imshow("test-circle", img);
-    cv::waitKey(0);
+    cv::waitKey(2000);
 }
