@@ -79,5 +79,5 @@ void test_rectangle() {
     }
     drawRectangle(img, cv::Point2d(150, 150), 200, 100, 20);
     cv::imshow("test-rectangle", img);
-    cv::waitKey(0);
+    cv::waitKey(2000);
 }
