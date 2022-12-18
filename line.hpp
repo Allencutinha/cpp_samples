@@ -44,16 +44,13 @@ void drawLine(cv::Mat &img, cv::Point2d const &pt1, cv::Point2d const &pt2) {
         double b = y1 - m * x1;
 
         // Estimate the coordinates of the line
-        if (dx < dy) {
-            for (int x = lx; x <= rx; ++x) {
-                int y = m * x + b;
-                writePixel(img, x, y);
-            }
-        } else {
-            for (int y = ty; y <= by; ++y) {
-                int x = (y - b) / m;
-                writePixel(img, x, y);
-            }
+        for (int x = lx; x <= rx; ++x) {
+            int y = std::round(m * x + b);
+            writePixel(img, x, y);
+        }
+        for (int y = ty; y <= by; ++y) {
+            int x = std::round((y - b) / m);
+            writePixel(img, x, y);
         }
     }
 }
