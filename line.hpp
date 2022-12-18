@@ -1,6 +1,13 @@
 #pragma once
 #include <opencv2/opencv.hpp>
 
+inline void writePixel(cv::Mat &img, int x, int y) {
+    if (x >= 0 && y >= 0 && x < img.rows && y < img.cols) {
+        cv::Vec3b &pix = img.at<cv::Vec3b>(x, y);
+        pix = cv::Vec3b(0, 255, 0);
+    }
+}
+
 void drawLine(cv::Mat &img, cv::Point2d const &pt1, cv::Point2d const &pt2) {
     // Coordinates of the two points
     int x1 = pt1.x, y1 = pt1.y;
@@ -24,14 +31,12 @@ void drawLine(cv::Mat &img, cv::Point2d const &pt1, cv::Point2d const &pt2) {
     if (0 == int(dy)) {
         for (int x = lx; x <= rx; ++x) {
             int y = y1;
-            cv::Vec3b &pix = img.at<cv::Vec3b>(x, y);
-            pix = cv::Vec3b(0, 255, 0);
+            writePixel(img, x, y);
         }
     } else if (0 == int(dx)) {
         for (int y = ty; y <= by; ++y) {
             int x = x1;
-            cv::Vec3b &pix = img.at<cv::Vec3b>(x, y);
-            pix = cv::Vec3b(0, 255, 0);
+            writePixel(img, x, y);
         }
     } else {
         // Calculate the slope and y-intercept
@@ -42,14 +47,12 @@ void drawLine(cv::Mat &img, cv::Point2d const &pt1, cv::Point2d const &pt2) {
         if (dx < dy) {
             for (int x = lx; x <= rx; ++x) {
                 int y = m * x + b;
-                cv::Vec3b &pix = img.at<cv::Vec3b>(x, y);
-                pix = cv::Vec3b(0, 255, 0);
+                writePixel(img, x, y);
             }
         } else {
             for (int y = ty; y <= by; ++y) {
                 int x = (y - b) / m;
-                cv::Vec3b &pix = img.at<cv::Vec3b>(x, y);
-                pix = cv::Vec3b(0, 255, 0);
+                writePixel(img, x, y);
             }
         }
     }
