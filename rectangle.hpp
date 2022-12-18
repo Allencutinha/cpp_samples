@@ -45,12 +45,15 @@ inline cv::Point2d rotatePoint(cv::Point2d const &refPt, float angle,
     return p;
 }
 
-inline cv::Point2d rotatePointMat(cv::Point2d const &refPt, float angle,
-                                  cv::Point2d const &pt) {
+inline cv::Matx22d rot2dMat(double angle) {
     float s = sin(angle);
     float c = cos(angle);
-    cv::Matx22d rot2d(c, -s, s, c);
-    return (rot2d * (pt - refPt) + refPt);
+    return (cv::Matx22d(c, -s, s, c));
+}
+
+inline cv::Point2d rotatePointMat(cv::Point2d const &refPt, float angle,
+                                  cv::Point2d const &pt) {
+    return (rot2dMat(angle) * (pt - refPt) + refPt);
 }
 
 inline void drawRectangle(cv::Mat &img, cv::Point2d const &tl, int width,
