@@ -1,5 +1,4 @@
 #include <opencv2/opencv.hpp>
-
 inline void drawCircle(cv::Mat &img, cv::Point2d const &center, int radius) {
     int count = 2 * 3.14 * radius;
     double inc = 2 * 3.14 / double(count);
