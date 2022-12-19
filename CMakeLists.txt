@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.2)
 project(samples)
 include(/home/allen/deps/OpenCV-3.4.18/share/OpenCV/OpenCVConfig.cmake)
 include_directories(include)
+include_directories(draw)
+include_directories(cv)
 set(IMLIB_SRC
     main.cpp 
 )

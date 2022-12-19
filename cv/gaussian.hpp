@@ -60,7 +60,7 @@ cv::Mat readInput(std::string const &file) {
     }
 }
 
-void test_gaussian(int argc, char **argv) {
+inline void test_gaussian(int argc, char **argv) {
     if (argc < 3) {
         std::cout << "\n\n\t!!!!Gaussian needs an input image file path!!!\n\n"
                   << std::endl;
@@ -77,6 +77,6 @@ void test_gaussian(int argc, char **argv) {
         cv::imshow("input", image);
         cv::imshow("gaussian", result);
         cv::imshow("ocv-gaussian", out);
-        cv::waitKey(0);
+        cv::waitKey(2000);
     }
 }
