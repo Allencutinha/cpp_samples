@@ -23,5 +23,6 @@ For custom implementation of computer vision features. Structures from OpenCV ar
 ## C++14 basics
 
 ## Algorithms
+#### 2D line fitting using RANSAC
 
 ## Optimization
