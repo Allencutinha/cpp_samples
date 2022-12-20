@@ -119,7 +119,6 @@ int test2() {
         {11, 12, 13}, {12, 13, 14}, {13, 14, 15}, {14, 15, 16}, {15, 16, 17},
         {16, 17, 18}, {17, 18, 19}, {18, 19, 20}, {19, 20, 21}, {20, 21, 22}};
 
-    Line3D expectedLine = {{10.5, 11.5, 12.5}, {20.5, 21.5, 22.5}};
 
     // Fit a line to the points using RANSAC.
     Line3D line = fitLineRANSAC(points, 1.0, 1000);
@@ -144,7 +143,7 @@ int test3() {
         {41, 42, 43}, {42, 43, 44}, {43, 44, 45}, {44, 45, 46}, {45, 46, 47},
         {46, 47, 48}, {47, 48, 49}, {48, 49, 50}, {49, 50, 51}, {50, 51, 52}};
 
-    Line3D expectedLine = {{25.5, 26.5, 27.5}, {50.5, 51.5, 52.5}};
+
     // Fit a line to the points using RANSAC.
     Line3D line = fitLineRANSAC(points, 1.0, 1000);
 
