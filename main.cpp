@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
     } else if (eq("fitline", argv[1])) {
         linefit::test();
     } else if (eq("fitline3d", argv[1])) {
-        // linefit3d::test();
+        linefit3d::test();
     } else {
         help();
     }
