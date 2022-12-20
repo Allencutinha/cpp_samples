@@ -7,22 +7,24 @@ This is to have an overview of the basics which are mostly provided by 3rd party
 For custom implementation of computer vision features. Structures from OpenCV are used and also the framework from OpenCV is used to load and display an image.
 
 ## Computer Vision functions
-
-#### Gaussian Blur
+* Gaussian Blur
 
 ## Drawing functions
-
-#### Line drawing
-
-#### Circle drawing
-
-#### Rectangle drawing
-
-#### Polygon drawing
-
-## C++14 basics
+* Line drawing
+* Circle drawing
+* Rectangle drawing
+* Polygon drawing
 
 ## Algorithms
-#### 2D line fitting using RANSAC
+* 2D line fitting using RANSAC
+* 3D line fitting using RANSAC
+* Singly linked list
 
 ## Optimization
+Module to implement basic optimization techniques like gauss newton, levenberg Marquadt etc
+
+## C++14 basics
+Code snippets to understand c++11 and above features
+
+## Programming tools
+* Simple google test example
