@@ -2,6 +2,8 @@
 #include "circle.hpp"
 #include "gaussian.hpp"
 #include "line.hpp"
+#include "linefit.hpp"
+#include "linefit3d.hpp"
 #include "polygon.hpp"
 #include "rectangle.hpp"
 #include <opencv2/opencv.hpp>
@@ -33,6 +35,10 @@ int main(int argc, char **argv) {
         test_polygon();
     } else if (eq("g", argv[1])) {
         test_gaussian(argc, argv);
+    } else if (eq("fitline", argv[1])) {
+        linefit::test();
+    } else if (eq("fitline3d", argv[1])) {
+        // linefit3d::test();
     } else {
         help();
     }
