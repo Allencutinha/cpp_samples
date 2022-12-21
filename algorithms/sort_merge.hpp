@@ -3,8 +3,6 @@
 #include <iostream>
 #include <vector>
 
-
-
 // Function to merge two sorted halves of the array
 
 // Here is a step-by-step breakdown of the merge function, which is used to
@@ -71,7 +69,6 @@ void merge(std::vector<int> &arr, int left, int middle, int right) {
     while (j < size2)
         arr[k++] = right_half[j++];
 }
-
 
 // Here is a step-by-step breakdown of the iterative version of the merge sort
 // algorithm:
