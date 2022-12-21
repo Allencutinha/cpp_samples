@@ -19,6 +19,7 @@ For custom implementation of computer vision features. Structures from OpenCV ar
 * 2D line fitting using RANSAC
 * 3D line fitting using RANSAC
 * Singly linked list
+* Doubly linked list
 
 ## Optimization
 Module to implement basic optimization techniques like gauss newton, levenberg Marquadt etc
