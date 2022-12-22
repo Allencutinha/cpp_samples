@@ -7,7 +7,7 @@
 // Function to apply the median filter to an image
 void medianFilter(cv::Mat &image, int kernelSize = 3) {
     // Create a kernel to store the neighboring pixels
-    std::vector<uchar> kernel(kernelSize * kernelSize);
+    std::vector<uchar> kernel;//(kernelSize * kernelSize);
 
     // Temporary image to store the filtered image
     cv::Mat temp(image.size(), image.type());
@@ -17,20 +17,21 @@ void medianFilter(cv::Mat &image, int kernelSize = 3) {
         for (int j = 0; j < image.cols; j++) {
             // Fill the kernel with the neighboring pixels
             int index = 0;
+            kernel.clear();
             for (int m = -kernelSize / 2; m <= kernelSize / 2; m++) {
                 for (int n = -kernelSize / 2; n <= kernelSize / 2; n++) {
                     int x = i + m;
                     int y = j + n;
                     // Check if the pixel is out of bounds
                     if (x >= 0 && x < image.rows && y >= 0 && y < image.cols) {
-                        kernel[index++] = image.at<uchar>(x, y);
+                        kernel.push_back(image.at<uchar>(x, y));
                     }
                 }
             }
             // Sort the kernel
             std::sort(kernel.begin(), kernel.end());
             // Set the median value as the new pixel value
-            temp.at<uchar>(i, j) = kernel[kernelSize * kernelSize / 2];
+            temp.at<uchar>(i, j) = kernel[kernel.size()/2];
         }
     }
 
@@ -59,9 +60,12 @@ void test(int argc, char **argv) {
         cv::Mat image = readInput(argv[2]).clone();
         cv::Mat result;
         image.copyTo(result);
-        medianFilter(result, 3);
+        medianFilter(result, 5);
+        cv::Mat ocvResult = image.clone();
+        cv::medianBlur(image, ocvResult, 5);
         cv::imshow("input", image);
         cv::imshow("median", result);
+        cv::imshow("ocv-median", ocvResult);
         cv::waitKey(0);
     }
 }
