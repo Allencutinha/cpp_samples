@@ -5,9 +5,9 @@
 #include <opencv2/opencv.hpp> // for cv::Mat, etc.
 
 // Function to apply the median filter to an image
-void medianFilter(cv::Mat &image, int KERNEL_SIZE = 3) {
+void medianFilter(cv::Mat &image, int kernelSize = 3) {
     // Create a kernel to store the neighboring pixels
-    std::vector<uchar> kernel(KERNEL_SIZE * KERNEL_SIZE);
+    std::vector<uchar> kernel(kernelSize * kernelSize);
 
     // Temporary image to store the filtered image
     cv::Mat temp(image.size(), image.type());
@@ -17,8 +17,8 @@ void medianFilter(cv::Mat &image, int KERNEL_SIZE = 3) {
         for (int j = 0; j < image.cols; j++) {
             // Fill the kernel with the neighboring pixels
             int index = 0;
-            for (int m = -KERNEL_SIZE / 2; m <= KERNEL_SIZE / 2; m++) {
-                for (int n = -KERNEL_SIZE / 2; n <= KERNEL_SIZE / 2; n++) {
+            for (int m = -kernelSize / 2; m <= kernelSize / 2; m++) {
+                for (int n = -kernelSize / 2; n <= kernelSize / 2; n++) {
                     int x = i + m;
                     int y = j + n;
                     // Check if the pixel is out of bounds
@@ -30,7 +30,7 @@ void medianFilter(cv::Mat &image, int KERNEL_SIZE = 3) {
             // Sort the kernel
             std::sort(kernel.begin(), kernel.end());
             // Set the median value as the new pixel value
-            temp.at<uchar>(i, j) = kernel[KERNEL_SIZE * KERNEL_SIZE / 2];
+            temp.at<uchar>(i, j) = kernel[kernelSize * kernelSize / 2];
         }
     }
 

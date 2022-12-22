@@ -8,6 +8,7 @@ For custom implementation of computer vision features. Structures from OpenCV ar
 
 ## Computer Vision functions
 * Gaussian Blur
+* Median Filter
 
 ## Drawing functions
 * Line drawing
