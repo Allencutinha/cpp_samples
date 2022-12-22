@@ -4,6 +4,7 @@
 #include "line.hpp"
 #include "linefit.hpp"
 #include "linefit3d.hpp"
+#include "median.hpp"
 #include "polygon.hpp"
 #include "rectangle.hpp"
 #include <opencv2/opencv.hpp>
@@ -39,6 +40,8 @@ int main(int argc, char **argv) {
         linefit::test();
     } else if (eq("fitline3d", argv[1])) {
         linefit3d::test();
+    } else if (eq("canny", argv[1])) {
+        medianfilter::test(argc, argv);
     } else {
         help();
     }
