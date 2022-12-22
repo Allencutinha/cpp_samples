@@ -25,23 +25,26 @@ void createGaussianFilter(cv::Mat &gKernel, int filterSize, double sigma) {
     }
 }
 
-void gaussianFilter(cv::Mat const &img, cv::Mat &out) {
+void gaussianFilter(cv::Mat const &img, cv::Mat &out, int kernelSize=3) {
     cv::Mat kernel;
-    int kernelSize = 9;
     int offset = kernelSize / 2;
     int rows = img.rows;
     int cols = img.cols;
     int channels = img.channels();
     out = img.clone();
     createGaussianFilter(kernel, kernelSize, 1.0);
-    for (int row = offset; row < rows - offset; ++row) {
-        for (int col = offset; col < cols - offset; ++col) {
+    for (int row = 0; row < rows; ++row) {
+        for (int col = 0; col < cols; ++col) {
             for (int ch = 0; ch < channels; ch++) {
                 double sum = 0.;
                 for (int r = -offset; r <= offset; ++r) {
                     for (int c = -offset; c <= offset; ++c) {
-                        sum += img.at<cv::Vec3b>(row + r, col + r)[ch] *
+                    int i = row+r;
+                    int j = col+c;
+                    if (i >= 0 && i < img.rows && j >= 0 && j < img.cols) {
+                        sum += img.at<cv::Vec3b>(i, j)[ch] *
                                kernel.at<float>(r + offset, c + offset);
+                    }
                     }
                 }
                 out.at<cv::Vec3b>(row, col)[ch] = sum;
@@ -70,7 +73,7 @@ inline void test_gaussian(int argc, char **argv) {
         cv::Mat image = readInput(argv[2]).clone();
         cv::Mat result;
         image.copyTo(result);
-        gaussianFilter(image, result);
+        gaussianFilter(image, result,9);
         // opencv output
         cv::Mat out;
         GaussianBlur(image, out, cv::Size(9, 9), 0, 0);
