@@ -5,6 +5,8 @@
 * Doubly Linked List
   
 ## Computational Geometry
+* Line fit 2D points using RANSAC
+* Line fit 3D points using RANSAC
 
 Computational geometry is a field of computer science that deals with the design and analysis of algorithms for solving geometric problems. Some of the topics that are typically included in computational geometry are:
 
