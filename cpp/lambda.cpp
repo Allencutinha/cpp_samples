@@ -67,4 +67,3 @@ TEST(LambdaTests, TestLambdaInitializerList) {
     EXPECT_EQ(func({3, 4, 5}), 12);
     EXPECT_EQ(func({1, 4}), 5);
 }
-

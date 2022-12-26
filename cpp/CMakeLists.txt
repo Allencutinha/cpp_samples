@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.9)
 project(cpp_tests)
+set(CMAKE_CXX_STANDARD 14)
+
 
 # Use FetchContent to download and include Google Test
 include(FetchContent)
@@ -16,20 +18,14 @@ if(NOT googletest_POPULATED)
   add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()
 
-# Add your own source files
-add_executable(lambda_test  lambda.cpp)
+enable_testing()
 
-# Link the Google Test libraries to your test executable
-target_link_libraries(lambda_test gtest gtest_main)
+add_executable(lambdatest lambda.cpp)
+target_link_libraries(lambdatest GTest::gtest_main)
 
-# Add the unit tests to CMake
-add_test(NAME lambda_tests COMMAND lambda_test)
+add_executable(transformtest transform.cpp)
+target_link_libraries(transformtest GTest::gtest_main)
 
-
-# Create a custom target to run the tests
-add_custom_command(
-     TARGET lambda_test
-     COMMENT "Run tests on c++ lambda"
-     POST_BUILD 
-     COMMAND lambda_test
-)
+include(GoogleTest)
+gtest_discover_tests(lambdatest)
+gtest_discover_tests(transformtest)
