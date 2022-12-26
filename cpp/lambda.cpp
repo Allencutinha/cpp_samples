@@ -46,3 +46,23 @@ TEST(LambdaTests, TestFuncPtrArgLambda2) {
     auto func = [](func_ptr_t fp, int x, int y) { return fp(x, y); };
     EXPECT_EQ(func(mul, 3, 4), 12);
 }
+
+TEST(LambdaTests, TestGenericLambda) {
+    auto func = [](auto x, auto y) { return x + y; };
+    EXPECT_EQ(func(10, 20), 30);
+    EXPECT_EQ(func(1.5, 2.5), 4.0);
+    EXPECT_EQ(func(1.5, 2), 3.5);
+    EXPECT_EQ(func(1, 2.7), 3.7);
+}
+
+TEST(LambdaTests, TestLambdaInitializerList) {
+    auto func = [](std::initializer_list<int> args) {
+        int sum = 0;
+        for (int x : args) {
+            sum += x;
+        }
+        return sum;
+    };
+    EXPECT_EQ(func({1, 2, 3, 4, 5}), 15);
+}
+
