@@ -33,21 +33,7 @@ int m = 15;
     std::cout << "m = " << m << std::endl;
 }();
 ```
-A lambda function that takes a function pointer as an argument:
-```cpp
-auto func = [](int (*fp)(int, int), int x, int y){
-    return fp(x, y);
-};
-int result = func(std::max, 10, 20);
-```
-A lambda function that returns a function pointer:
-```cpp
-auto func = []() -> int (*)(int, int) {
-    return std::max;
-};
-int (*fp)(int, int) = func();
-int result = fp(10, 20);
-```
+
 
 A lambda function that uses a default argument value:
 ```cpp
