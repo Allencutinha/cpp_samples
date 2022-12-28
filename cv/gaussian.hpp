@@ -25,7 +25,7 @@ void createGaussianFilter(cv::Mat &gKernel, int filterSize, double sigma) {
     }
 }
 
-void gaussianFilter(cv::Mat const &img, cv::Mat &out, int kernelSize=3) {
+void gaussianFilter(cv::Mat const &img, cv::Mat &out, int kernelSize = 3) {
     cv::Mat kernel;
     int offset = kernelSize / 2;
     int rows = img.rows;
@@ -39,12 +39,12 @@ void gaussianFilter(cv::Mat const &img, cv::Mat &out, int kernelSize=3) {
                 double sum = 0.;
                 for (int r = -offset; r <= offset; ++r) {
                     for (int c = -offset; c <= offset; ++c) {
-                    int i = row+r;
-                    int j = col+c;
-                    if (i >= 0 && i < img.rows && j >= 0 && j < img.cols) {
-                        sum += img.at<cv::Vec3b>(i, j)[ch] *
-                               kernel.at<float>(r + offset, c + offset);
-                    }
+                        int i = row + r;
+                        int j = col + c;
+                        if (i >= 0 && i < img.rows && j >= 0 && j < img.cols) {
+                            sum += img.at<cv::Vec3b>(i, j)[ch] *
+                                   kernel.at<float>(r + offset, c + offset);
+                        }
                     }
                 }
                 out.at<cv::Vec3b>(row, col)[ch] = sum;
@@ -73,7 +73,7 @@ inline void test_gaussian(int argc, char **argv) {
         cv::Mat image = readInput(argv[2]).clone();
         cv::Mat result;
         image.copyTo(result);
-        gaussianFilter(image, result,9);
+        gaussianFilter(image, result, 9);
         // opencv output
         cv::Mat out;
         GaussianBlur(image, out, cv::Size(9, 9), 0, 0);

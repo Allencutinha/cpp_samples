@@ -7,7 +7,7 @@
 // Function to apply the median filter to an image
 void medianFilter(cv::Mat &image, int kernelSize = 3) {
     // Create a kernel to store the neighboring pixels
-    std::vector<uchar> kernel;//(kernelSize * kernelSize);
+    std::vector<uchar> kernel; //(kernelSize * kernelSize);
 
     // Temporary image to store the filtered image
     cv::Mat temp(image.size(), image.type());
@@ -31,7 +31,7 @@ void medianFilter(cv::Mat &image, int kernelSize = 3) {
             // Sort the kernel
             std::sort(kernel.begin(), kernel.end());
             // Set the median value as the new pixel value
-            temp.at<uchar>(i, j) = kernel[kernel.size()/2];
+            temp.at<uchar>(i, j) = kernel[kernel.size() / 2];
         }
     }
 
