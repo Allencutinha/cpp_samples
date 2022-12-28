@@ -52,7 +52,7 @@ void gaussianFilter(cv::Mat const &img, cv::Mat &out, int kernelSize = 3) {
         }
     }
 }
-
+namespace gaussian{
 cv::Mat readInput(std::string const &file) {
     cv::Mat img = cv::imread(file, 1);
     if (!img.empty()) {
@@ -63,7 +63,7 @@ cv::Mat readInput(std::string const &file) {
     }
 }
 
-inline void test_gaussian(int argc, char **argv) {
+inline void test(int argc, char **argv) {
     if (argc < 3) {
         std::cout << "\n\n\t!!!!Gaussian needs an input image file path!!!\n\n"
                   << std::endl;
@@ -82,4 +82,5 @@ inline void test_gaussian(int argc, char **argv) {
         cv::imshow("ocv-gaussian", out);
         cv::waitKey(2000);
     }
+}
 }

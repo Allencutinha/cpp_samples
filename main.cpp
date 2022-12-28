@@ -35,12 +35,14 @@ int main(int argc, char **argv) {
     } else if (eq("p", argv[1])) {
         test_polygon();
     } else if (eq("g", argv[1])) {
-        test_gaussian(argc, argv);
+        gaussian::test(argc, argv);
+    } else if (eq("canny", argv[1])) {
+        canny::test(argc, argv);
     } else if (eq("fitline", argv[1])) {
         linefit::test();
     } else if (eq("fitline3d", argv[1])) {
         linefit3d::test();
-    } else if (eq("canny", argv[1])) {
+    } else if (eq("median", argv[1])) {
         medianfilter::test(argc, argv);
     } else {
         help();
