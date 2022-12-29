@@ -1,6 +1,7 @@
 #include "canny.hpp"
 #include "circle.hpp"
 #include "gaussian.hpp"
+#include "hough.hpp"
 #include "line.hpp"
 #include "linefit.hpp"
 #include "linefit3d.hpp"
@@ -38,6 +39,8 @@ int main(int argc, char **argv) {
         gaussian::test(argc, argv);
     } else if (eq("canny", argv[1])) {
         canny::test(argc, argv);
+    } else if (eq("hough", argv[1])) {
+        hough::test(argc, argv);
     } else if (eq("fitline", argv[1])) {
         linefit::test();
     } else if (eq("fitline3d", argv[1])) {
