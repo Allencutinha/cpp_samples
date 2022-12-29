@@ -66,7 +66,7 @@ void test(int argc, char **argv) {
         cv::imshow("input", image);
         cv::imshow("median", result);
         cv::imshow("ocv-median", ocvResult);
-        cv::waitKey(0);
+        cv::waitKey(2000);
     }
 }
 

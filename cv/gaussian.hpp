@@ -52,7 +52,7 @@ void gaussianFilter(cv::Mat const &img, cv::Mat &out, int kernelSize = 3) {
         }
     }
 }
-namespace gaussian{
+namespace gaussian {
 cv::Mat readInput(std::string const &file) {
     cv::Mat img = cv::imread(file, 1);
     if (!img.empty()) {
@@ -83,4 +83,4 @@ inline void test(int argc, char **argv) {
         cv::waitKey(2000);
     }
 }
-}
+} // namespace gaussian

@@ -1,5 +1,5 @@
 #pragma once
-#include<opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 float Gaussian[5][5] = {{2.f, 4.f, 5.f, 4.f, 2.f},
                         {4.f, 9.f, 12.f, 9.f, 4.f},
                         {5.f, 12.f, 15.f, 12.f, 5.f},
@@ -179,7 +179,6 @@ void test_canny(cv::Mat const &image) {
     cv::waitKey(2000);
 }
 
-
 void test(int argc, char **argv) {
     if (argc < 3) {
         std::cout << "\n\n\t!!!!Gaussian needs an input image file path!!!\n\n"
@@ -195,4 +194,4 @@ void test(int argc, char **argv) {
         }
     }
 }
-}
+} // namespace canny
