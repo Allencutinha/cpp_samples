@@ -9,8 +9,6 @@ typedef struct {
 
 const int THETA_DIM = 180;
 
-const int MAX_LINES = 1000;
-
 void hough_buffer(uchar *inBuff, int height, int width,
                   std::vector<sLine> &lines, int minLinePixels) {
     // make sure the num of lines detected are zero before hough
@@ -63,6 +61,16 @@ void drawLine(cv::Mat &img, double rho, double theta_) {
     // draw_line(inBuff, height, width, x1, y1, x2, y2);
     cv::line(img, pt1, pt2, cv::Scalar(0, 0, 255), 3, CV_AA);
 }
+
+void drawLines(cv::Mat const &image, std::vector<sLine> const &lines) {
+    cv::Mat drawImage = image.clone();
+    for (const auto &line : lines) {
+        drawLine(drawImage, line.rho, line.theta);
+    }
+    cv::namedWindow("lines");
+    cv::imshow("lines", drawImage);
+    cv::waitKey(500);
+}
 int hough_custom(cv::Mat &image) {
     cv::Mat gray;
     cv::Mat grayOut;
@@ -92,17 +100,8 @@ int hough_custom(cv::Mat &image) {
 
         int lineSegmentLength = minLinePixels + 10 * i;
         hough_buffer(outBuff, height, width, lines, lineSegmentLength);
-        cv::Mat drawImage = image.clone();
-        for (const auto &line : lines) {
-            drawLine(drawImage, line.rho, line.theta);
-        }
 
-        cv::namedWindow("edge");
-        cv::imshow("edge", grayOut);
-
-        cv::namedWindow("lines");
-        cv::imshow("lines", drawImage);
-        cv::waitKey(500);
+        drawLines(image, lines);
     }
     return 0;
 }
@@ -127,7 +126,7 @@ void test(int argc, char **argv) {
     } else {
         cv::Mat image = readInput(argv[2]).clone();
         hough_custom(image);
-        cv::waitKey(0);
+        cv::waitKey(50);
     }
 }
 } // namespace hough
