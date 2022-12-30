@@ -2,10 +2,12 @@
 
 #include "canny.hpp"
 #include <opencv2/opencv.hpp>
-typedef struct {
+struct sLine {
+    sLine();
+    sLine(int r, int t) : rho(r), theta(t) {}
     int rho;
     int theta;
-} sLine;
+};
 
 const int THETA_DIM = 180;
 
@@ -17,31 +19,26 @@ void hough_buffer(uchar *inBuff, int height, int width,
     int aHeight = sqrt(height * height + width * width) - 1;
 
     std::vector<int> accum(aWidth * aHeight);
+    std::fill(accum.begin(), accum.end(), 0);
     for (int row = 0; row < height; row++) {
         for (int col = 0; col < width; col++) {
             if (inBuff[row * width + col] == 255) {
                 for (int theta = 0; theta < 180; theta++) {
                     double thetaRad = (float(theta) * 3.14) / 180.0;
                     int r = int(col * cos(thetaRad) + row * sin(thetaRad));
+                    int element = r * THETA_DIM + theta;
                     if (r > 0 && r < aHeight) {
-                        accum[r * THETA_DIM + theta]++;
+                        // push the line at the mqoment the threshold is reached
+                        if (accum[element] == minLinePixels) {
+                            lines.push_back(sLine(r, theta));
+                        }
+                        accum[element]++;
                     }
                 }
             }
         }
     }
 
-    // detect lines which have voted more than 100 pixels
-    for (int t = 0; t < THETA_DIM; t++) {
-        for (int r = 0; r < aHeight; r++) {
-            if (accum[r * THETA_DIM + t] > minLinePixels) {
-                sLine l;
-                l.rho = r;
-                l.theta = t;
-                lines.push_back(l);
-            }
-        }
-    }
     std::cout << "number of lines detected " << lines.size() << std::endl;
 }
 int im_round(double number) {
@@ -58,7 +55,6 @@ void drawLine(cv::Mat &img, double rho, double theta_) {
     pt1.y = cvRound(y0 + 1000 * (a));
     pt2.x = cvRound(x0 - 1000 * (-b));
     pt2.y = cvRound(y0 - 1000 * (a));
-    // draw_line(inBuff, height, width, x1, y1, x2, y2);
     cv::line(img, pt1, pt2, cv::Scalar(0, 0, 255), 3, CV_AA);
 }
 
