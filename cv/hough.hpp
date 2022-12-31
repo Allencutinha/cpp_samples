@@ -9,7 +9,7 @@ struct sLine {
     int theta;
 };
 
-const int THETA_DIM = 180;
+const int THETA_DIM = 360;
 
 void hough_buffer(uchar *inBuff, int height, int width,
                   std::vector<sLine> &lines, int minLinePixels) {
@@ -23,12 +23,12 @@ void hough_buffer(uchar *inBuff, int height, int width,
     for (int row = 0; row < height; row++) {
         for (int col = 0; col < width; col++) {
             if (inBuff[row * width + col] == 255) {
-                for (int theta = 0; theta < 180; theta++) {
+                for (int theta = 0; theta < 360; theta++) {
                     double thetaRad = (float(theta) * 3.14) / 180.0;
                     int r = int(col * cos(thetaRad) + row * sin(thetaRad));
                     int element = r * THETA_DIM + theta;
                     if (r > 0 && r < aHeight) {
-                        // push the line at the mqoment the threshold is reached
+                        // push the line at the moment the threshold is reached
                         if (accum[element] == minLinePixels) {
                             lines.push_back(sLine(r, theta));
                         }
