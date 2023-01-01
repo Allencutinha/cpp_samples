@@ -17,6 +17,8 @@ void help() {
     std::cout << "r - to draw rectangle" << std::endl;
     std::cout << "p - to draw polygon" << std::endl;
     std::cout << "g image - gaussian filter" << std::endl;
+    std::cout << "canny path/to/image - canny edges" << std::endl;
+    std::cout << "hough path/to/image - hough lines" << std::endl;
     exit(2);
 }
 bool eq(std::string const &a, std::string const &b) {

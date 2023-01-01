@@ -8,6 +8,7 @@ include_directories(include)
 include_directories(draw)
 include_directories(cv)
 include_directories(algorithms)
+
 set(IMLIB_SRC
     main.cpp 
 )
