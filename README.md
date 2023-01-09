@@ -11,6 +11,7 @@ For custom implementation of computer vision features. Structures from OpenCV ar
 * Median Filter
 * Canny Edge
 * Hough transform
+* Erode -tbd
 
 ## Drawing functions
 * Line drawing
