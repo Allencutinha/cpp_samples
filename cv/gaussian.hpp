@@ -12,7 +12,7 @@ void createGaussianFilter(cv::Mat &gKernel, int filterSize, double sigma) {
             r = sqrt(x * x + y * y);
             int row = (x + buff);
             int col = (y + buff);
-            gKernel.at<float>(row, col) = (exp(-(r * r) / s)) / (M_PI * s);
+            gKernel.at<float>(row, col) = (exp(-(r * r) / s)) / (CV_PI * s);
             sum += gKernel.at<float>(row, col);
         }
     }

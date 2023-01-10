@@ -162,7 +162,7 @@ void test_canny(cv::Mat const &image) {
     cv::Mat intImage;
     if (image.channels() == 3) {
         std::cout << "color image" << std::endl;
-        cvtColor(image, grayImage, CV_BGR2GRAY);
+        cvtColor(image, grayImage, cv::COLOR_BGR2GRAY);
         grayImage.copyTo(result);
         grayImage.copyTo(intImage);
     } else {

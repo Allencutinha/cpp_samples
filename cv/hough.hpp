@@ -55,7 +55,7 @@ void drawLine(cv::Mat &img, double rho, double theta_) {
     pt1.y = cvRound(y0 + 1000 * (a));
     pt2.x = cvRound(x0 - 1000 * (-b));
     pt2.y = cvRound(y0 - 1000 * (a));
-    cv::line(img, pt1, pt2, cv::Scalar(0, 0, 255), 3, CV_AA);
+    cv::line(img, pt1, pt2, cv::Scalar(0, 0, 255), 3, cv::LINE_AA);
 }
 
 void drawLines(cv::Mat const &image, std::vector<sLine> const &lines) {
@@ -72,7 +72,7 @@ int hough_custom(cv::Mat &image) {
     cv::Mat grayOut;
     cv::Mat grayInt;
     if (image.channels() == 3) {
-        cvtColor(image, gray, CV_BGR2GRAY);
+        cvtColor(image, gray, cv::COLOR_BGR2GRAY);
     } else {
         image.copyTo(gray);
     }
