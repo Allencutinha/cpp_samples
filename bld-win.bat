@@ -1,3 +1,4 @@
+:: add the paths of the cmake msbuild and opencv binaries to the terminal's path
 set PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin;%PATH%
 set PATH=K:\bin\cmake-3.25.1\bin;%PATH%
 set PATH=K:\bin\opencv-3.4.15-vc14_vc15\opencv\build\x64\vc15\bin;%PATH%
