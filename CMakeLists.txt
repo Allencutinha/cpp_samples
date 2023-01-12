@@ -12,11 +12,11 @@ include_directories(draw)
 include_directories(cv)
 include_directories(algorithms)
 
-set(IMLIB_SRC
+set(CPP_SRC
     main.cpp 
 )
 
-add_executable(exe ${IMLIB_SRC})
+add_executable(exe ${CPP_SRC})
 
 target_link_libraries(exe ${OpenCV_LIBS})
 
