@@ -19,7 +19,8 @@
 // complexity. However, it can be a useful algorithm to know and can be useful
 // in certain situations
 
-void bubbleSort(std::vector<int> &vec) {
+void bubbleSort(std::vector<int>& vec)
+{
     if (vec.size() > 0) {
         // Iterate through the list n-1 times
         for (int i = 0; i < vec.size() - 1; i++) {
@@ -35,10 +36,11 @@ void bubbleSort(std::vector<int> &vec) {
 }
 
 namespace {
-int test() {
+int test()
+{
     std::vector<int> vec = {5, 2, 4, 1, 3};
     bubbleSort(vec);
-    for (int i : vec) {
+    for (int i: vec) {
         std::cout << i << " ";
     }
     std::cout << std::endl;

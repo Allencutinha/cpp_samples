@@ -4,7 +4,8 @@
 #include <vector>
 
 // Function to merge two sorted halves of the array
-void rmerge(std::vector<int> &arr, int left, int middle, int right) {
+void rmerge(std::vector<int>& arr, int left, int middle, int right)
+{
     // Calculate the sizes of the two halves
     int size1 = middle - left + 1;
     int size2 = right - middle;
@@ -38,7 +39,8 @@ void rmerge(std::vector<int> &arr, int left, int middle, int right) {
 }
 
 // Recursive function to sort an array using merge sort
-void rmerge_sort(std::vector<int> &arr, int left, int right) {
+void rmerge_sort(std::vector<int>& arr, int left, int right)
+{
     if (left < right) {
         // Calculate the middle index
         int middle = left + (right - left) / 2;
@@ -56,13 +58,14 @@ void rmerge_sort(std::vector<int> &arr, int left, int right) {
 
 namespace recursive_merge_sort {
 
-int test() {
+int test()
+{
     // Test the merge sort function
     std::vector<int> arr = {5, 2, 4, 6, 1, 3};
     rmerge_sort(arr, 0, arr.size() - 1);
 
     // Print the sorted array
-    for (int x : arr)
+    for (int x: arr)
         std::cout << x << " ";
     std::cout << std::endl;
 

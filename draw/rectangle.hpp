@@ -1,29 +1,30 @@
 #pragma once
 #include "line.hpp"
 #include <opencv2/opencv.hpp>
-inline void drawRect(cv::Mat &img, cv::Point2d const &tl, cv::Point2d const &tr,
-                     cv::Point2d const &br, cv::Point2d const &bl) {
+inline void drawRect(
+    cv::Mat& img, cv::Point2d const& tl, cv::Point2d const& tr, cv::Point2d const& br, cv::Point2d const& bl)
+{
     drawLine(img, tl, tr);
     drawLine(img, tr, br);
     drawLine(img, br, bl);
     drawLine(img, bl, tl);
 }
 
-inline void drawRectangle(cv::Mat &img, cv::Point2d const &tl,
-                          cv::Point2d const &br) {
+inline void drawRectangle(cv::Mat& img, cv::Point2d const& tl, cv::Point2d const& br)
+{
     cv::Point2d tr = cv::Point2d(tl.x, br.y);
     cv::Point2d bl = cv::Point2d(br.x, tl.y);
     drawRect(img, tl, tr, br, bl);
 }
 
-inline void drawRectangle(cv::Mat &img, cv::Point2d const &tl, int width,
-                          int height) {
+inline void drawRectangle(cv::Mat& img, cv::Point2d const& tl, int width, int height)
+{
     cv::Point2d br = tl + cv::Point2d(height, width);
     drawRectangle(img, tl, br);
 }
 
-inline cv::Point2d rotatePoint(cv::Point2d const &refPt, float angle,
-                               cv::Point2d const &pt) {
+inline cv::Point2d rotatePoint(cv::Point2d const& refPt, float angle, cv::Point2d const& pt)
+{
     float cx = refPt.x;
     float cy = refPt.y;
     float s = sin(angle);
@@ -45,19 +46,20 @@ inline cv::Point2d rotatePoint(cv::Point2d const &refPt, float angle,
     return p;
 }
 
-inline cv::Matx22d rot2dMat(double angle) {
+inline cv::Matx22d rot2dMat(double angle)
+{
     float s = sin(angle);
     float c = cos(angle);
     return (cv::Matx22d(c, -s, s, c));
 }
 
-inline cv::Point2d rotatePointMat(cv::Point2d const &refPt, float angle,
-                                  cv::Point2d const &pt) {
+inline cv::Point2d rotatePointMat(cv::Point2d const& refPt, float angle, cv::Point2d const& pt)
+{
     return (rot2dMat(angle) * (pt - refPt) + refPt);
 }
 
-inline void drawRectangle(cv::Mat &img, cv::Point2d const &tl, int width,
-                          int height, double angleDeg) {
+inline void drawRectangle(cv::Mat& img, cv::Point2d const& tl, int width, int height, double angleDeg)
+{
 
     double angle = angleDeg * 3.14 / 180.;
     double dist = sqrt(width * width + height * height);
@@ -72,7 +74,8 @@ inline void drawRectangle(cv::Mat &img, cv::Point2d const &tl, int width,
     drawRect(img, tl, tr, br, bl);
 }
 
-void test_rectangle() {
+void test_rectangle()
+{
     cv::Mat img = cv::Mat::zeros(400, 800, CV_8UC3);
     drawRectangle(img, cv::Point2d(100, 100), cv::Point2d(300, 500));
     drawRectangle(img, cv::Point2d(150, 150), 200, 100);

@@ -2,8 +2,9 @@
 
 #include <cstddef>
 
-template <typename T> class SinglyLinkedList {
-  public:
+template <typename T>
+class SinglyLinkedList {
+public:
     SinglyLinkedList() : head_(NULL), tail_(NULL), size_(0) {}
 
     // Check if the list is empty
@@ -13,14 +14,15 @@ template <typename T> class SinglyLinkedList {
     std::size_t size() const { return size_; }
 
     // Get the element at the front of the list
-    const T &front() const { return head_->data; }
+    const T& front() const { return head_->data; }
 
     // Get the element at the back of the list
-    const T &back() const { return tail_->data; }
+    const T& back() const { return tail_->data; }
 
     // Insert an element at the front of the list
-    void insert_front(const T &data) {
-        Node *node = new Node(data, head_);
+    void insert_front(const T& data)
+    {
+        Node* node = new Node(data, head_);
         if (head_ == NULL) {
             head_ = node;
             tail_ = node;
@@ -31,8 +33,9 @@ template <typename T> class SinglyLinkedList {
     }
 
     // Insert an element at the back of the list
-    void insert_back(const T &data) {
-        Node *node = new Node(data);
+    void insert_back(const T& data)
+    {
+        Node* node = new Node(data);
         if (tail_ == NULL) {
             head_ = node;
             tail_ = node;
@@ -44,10 +47,11 @@ template <typename T> class SinglyLinkedList {
     }
 
     // Remove the element at the front of the list
-    void remove_front() {
+    void remove_front()
+    {
         if (head_ == NULL)
             return;
-        Node *temp = head_;
+        Node* temp = head_;
         head_ = head_->next;
         delete temp;
         --size_;
@@ -56,7 +60,8 @@ template <typename T> class SinglyLinkedList {
     }
 
     // Remove the element at the back of the list
-    void remove_back() {
+    void remove_back()
+    {
         if (tail_ == NULL)
             return;
         if (head_ == tail_) {
@@ -65,7 +70,7 @@ template <typename T> class SinglyLinkedList {
             tail_ = NULL;
             return;
         }
-        Node *temp = head_;
+        Node* temp = head_;
         while (temp->next != tail_)
             temp = temp->next;
         delete tail_;
@@ -75,8 +80,9 @@ template <typename T> class SinglyLinkedList {
     }
 
     // Search for an element in the list
-    bool search(const T &data) const {
-        Node *temp = head_;
+    bool search(const T& data) const
+    {
+        Node* temp = head_;
         while (temp != NULL) {
             if (temp->data == data)
                 return true;
@@ -86,10 +92,11 @@ template <typename T> class SinglyLinkedList {
     }
 
     // Clear the list
-    void clear() {
-        Node *temp = head_;
+    void clear()
+    {
+        Node* temp = head_;
         while (temp != NULL) {
-            Node *next = temp->next;
+            Node* next = temp->next;
             delete temp;
             temp = next;
         }
@@ -98,16 +105,16 @@ template <typename T> class SinglyLinkedList {
         size_ = 0;
     }
 
-  private:
+private:
     // Node for the singly linked list
     struct Node {
         T data;
-        Node *next;
-        Node(const T &data) : data(data), next(NULL) {}
-        Node(const T &data, Node *next) : data(data), next(next) {}
+        Node* next;
+        Node(const T& data) : data(data), next(NULL) {}
+        Node(const T& data, Node* next) : data(data), next(next) {}
     };
 
-    Node *tail_;
-    Node *head_;
+    Node* tail_;
+    Node* head_;
     int size_;
 };

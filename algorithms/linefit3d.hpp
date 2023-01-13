@@ -16,19 +16,17 @@ struct Line3D {
 };
 
 // Calculates the distance from a point to a line.
-double pointToLineDistance(const Point3D &point, const Line3D &line) {
+double pointToLineDistance(const Point3D& point, const Line3D& line)
+{
     // Calculate the direction vector of the line.
-    Point3D lineDirection = {line.direction.x - line.point.x,
-                             line.direction.y - line.point.y,
-                             line.direction.z - line.point.z};
+    Point3D lineDirection = {
+        line.direction.x - line.point.x, line.direction.y - line.point.y, line.direction.z - line.point.z};
 
     // Calculate the projection of the point onto the line.
-    double t =
-        ((point.x - line.point.x) * lineDirection.x +
-         (point.y - line.point.y) * lineDirection.y +
-         (point.z - line.point.z) * lineDirection.z) /
-        (lineDirection.x * lineDirection.x + lineDirection.y * lineDirection.y +
-         lineDirection.z * lineDirection.z);
+    double t = ((point.x - line.point.x) * lineDirection.x + (point.y - line.point.y) * lineDirection.y +
+                (point.z - line.point.z) * lineDirection.z) /
+               (lineDirection.x * lineDirection.x + lineDirection.y * lineDirection.y +
+                lineDirection.z * lineDirection.z);
 
     Point3D projection = {line.point.x + t * lineDirection.x,
                           line.point.y + t * lineDirection.y,
@@ -36,17 +34,16 @@ double pointToLineDistance(const Point3D &point, const Line3D &line) {
 
     // Calculate the distance between the point and its projection onto the
     // line.
-    double distance =
-        std::sqrt((point.x - projection.x) * (point.x - projection.x) +
-                  (point.y - projection.y) * (point.y - projection.y) +
-                  (point.z - projection.z) * (point.z - projection.z));
+    double distance = std::sqrt((point.x - projection.x) * (point.x - projection.x) +
+                                (point.y - projection.y) * (point.y - projection.y) +
+                                (point.z - projection.z) * (point.z - projection.z));
 
     return distance;
 }
 
 // Fits a line to the given 3D points using the RANSAC algorithm.
-Line3D fitLineRANSAC(const std::vector<Point3D> &points, double inlierThreshold,
-                     int numIterations) {
+Line3D fitLineRANSAC(const std::vector<Point3D>& points, double inlierThreshold, int numIterations)
+{
     std::mt19937 rng;
     rng.seed(std::random_device()());
 
@@ -66,8 +63,7 @@ Line3D fitLineRANSAC(const std::vector<Point3D> &points, double inlierThreshold,
 
         // Normalize the direction vector.
         double norm =
-            std::sqrt(direction.x * direction.x + direction.y * direction.y +
-                      direction.z * direction.z);
+            std::sqrt(direction.x * direction.x + direction.y * direction.y + direction.z * direction.z);
         direction.x /= norm;
         direction.y /= norm;
         direction.z /= norm;
@@ -78,7 +74,7 @@ Line3D fitLineRANSAC(const std::vector<Point3D> &points, double inlierThreshold,
 
         // Count the number of inliers that are within the inlier threshold.
         int numInliers = 0;
-        for (const Point3D &point : points) {
+        for (const Point3D& point: points) {
             if (pointToLineDistance(point, line) < inlierThreshold) {
                 numInliers++;
             }
@@ -90,88 +86,87 @@ Line3D fitLineRANSAC(const std::vector<Point3D> &points, double inlierThreshold,
             bestNumInliers = numInliers;
         }
     }
-    std::cout << "\nInput size : " << points.size()
-              << "\tInliers : " << bestNumInliers << std::endl;
+    std::cout << "\nInput size : " << points.size() << "\tInliers : " << bestNumInliers << std::endl;
     return bestLine;
 }
 
-int test1() {
+int test1()
+{
     // Create some example 3D points.
-    std::vector<Point3D> points = {
-        {1, 2, 3}, {2, 3, 4}, {3, 4, 5}, {4, 5, 6}, {5, 6, 7}};
+    std::vector<Point3D> points = {{1, 2, 3}, {2, 3, 4}, {3, 4, 5}, {4, 5, 6}, {5, 6, 7}};
 
     // Fit a line to the points using RANSAC.
     Line3D line = fitLineRANSAC(points, 1.0, 1000);
 
     // Print the result.
-    std::cout << "Point: (" << line.point.x << ", " << line.point.y << ", "
-              << line.point.z << ")" << std::endl;
-    std::cout << "Direction: (" << line.direction.x << ", " << line.direction.y
-              << ", " << line.direction.z << ")" << std::endl;
+    std::cout << "Point: (" << line.point.x << ", " << line.point.y << ", " << line.point.z << ")"
+              << std::endl;
+    std::cout << "Direction: (" << line.direction.x << ", " << line.direction.y << ", " << line.direction.z
+              << ")" << std::endl;
 
     return 0;
 }
 
-int test2() {
-    std::vector<Point3D> points = {
-        {1, 2, 3},    {2, 3, 4},    {3, 4, 5},    {4, 5, 6},    {5, 6, 7},
-        {6, 7, 8},    {7, 8, 9},    {8, 9, 10},   {9, 10, 11},  {10, 11, 12},
-        {11, 12, 13}, {12, 13, 14}, {13, 14, 15}, {14, 15, 16}, {15, 16, 17},
-        {16, 17, 18}, {17, 18, 19}, {18, 19, 20}, {19, 20, 21}, {20, 21, 22}};
+int test2()
+{
+    std::vector<Point3D> points = {{1, 2, 3},    {2, 3, 4},    {3, 4, 5},    {4, 5, 6},    {5, 6, 7},
+                                   {6, 7, 8},    {7, 8, 9},    {8, 9, 10},   {9, 10, 11},  {10, 11, 12},
+                                   {11, 12, 13}, {12, 13, 14}, {13, 14, 15}, {14, 15, 16}, {15, 16, 17},
+                                   {16, 17, 18}, {17, 18, 19}, {18, 19, 20}, {19, 20, 21}, {20, 21, 22}};
 
     // Fit a line to the points using RANSAC.
     Line3D line = fitLineRANSAC(points, 1.0, 1000);
 
     // Print the result.
-    std::cout << "Point: (" << line.point.x << ", " << line.point.y << ", "
-              << line.point.z << ")" << std::endl;
-    std::cout << "Direction: (" << line.direction.x << ", " << line.direction.y
-              << ", " << line.direction.z << ")" << std::endl;
+    std::cout << "Point: (" << line.point.x << ", " << line.point.y << ", " << line.point.z << ")"
+              << std::endl;
+    std::cout << "Direction: (" << line.direction.x << ", " << line.direction.y << ", " << line.direction.z
+              << ")" << std::endl;
     return 0;
 }
-int test3() {
+int test3()
+{
     std::vector<Point3D> points = {
-        {1, 2, 3},    {2, 3, 4},    {3, 4, 5},    {4, 5, 6},    {5, 6, 7},
-        {6, 7, 8},    {7, 8, 9},    {8, 9, 10},   {9, 10, 11},  {10, 11, 12},
-        {11, 12, 13}, {12, 13, 14}, {13, 14, 15}, {14, 15, 16}, {15, 16, 17},
-        {16, 17, 18}, {17, 18, 19}, {18, 19, 20}, {19, 20, 21}, {20, 21, 22},
-        {21, 22, 23}, {22, 23, 24}, {23, 24, 25}, {24, 25, 26}, {25, 26, 27},
-        {26, 27, 28}, {27, 28, 29}, {28, 29, 30}, {29, 30, 31}, {30, 31, 32},
-        {31, 32, 33}, {32, 33, 34}, {33, 34, 35}, {34, 35, 36}, {35, 36, 37},
-        {36, 37, 38}, {37, 38, 39}, {38, 39, 40}, {39, 40, 41}, {40, 41, 42},
-        {41, 42, 43}, {42, 43, 44}, {43, 44, 45}, {44, 45, 46}, {45, 46, 47},
-        {46, 47, 48}, {47, 48, 49}, {48, 49, 50}, {49, 50, 51}, {50, 51, 52}};
+        {1, 2, 3},    {2, 3, 4},    {3, 4, 5},    {4, 5, 6},    {5, 6, 7},    {6, 7, 8},    {7, 8, 9},
+        {8, 9, 10},   {9, 10, 11},  {10, 11, 12}, {11, 12, 13}, {12, 13, 14}, {13, 14, 15}, {14, 15, 16},
+        {15, 16, 17}, {16, 17, 18}, {17, 18, 19}, {18, 19, 20}, {19, 20, 21}, {20, 21, 22}, {21, 22, 23},
+        {22, 23, 24}, {23, 24, 25}, {24, 25, 26}, {25, 26, 27}, {26, 27, 28}, {27, 28, 29}, {28, 29, 30},
+        {29, 30, 31}, {30, 31, 32}, {31, 32, 33}, {32, 33, 34}, {33, 34, 35}, {34, 35, 36}, {35, 36, 37},
+        {36, 37, 38}, {37, 38, 39}, {38, 39, 40}, {39, 40, 41}, {40, 41, 42}, {41, 42, 43}, {42, 43, 44},
+        {43, 44, 45}, {44, 45, 46}, {45, 46, 47}, {46, 47, 48}, {47, 48, 49}, {48, 49, 50}, {49, 50, 51},
+        {50, 51, 52}};
 
     // Fit a line to the points using RANSAC.
     Line3D line = fitLineRANSAC(points, 1.0, 1000);
 
     // Print the result.
-    std::cout << "Point: (" << line.point.x << ", " << line.point.y << ", "
-              << line.point.z << ")" << std::endl;
-    std::cout << "Direction: (" << line.direction.x << ", " << line.direction.y
-              << ", " << line.direction.z << ")" << std::endl;
+    std::cout << "Point: (" << line.point.x << ", " << line.point.y << ", " << line.point.z << ")"
+              << std::endl;
+    std::cout << "Direction: (" << line.direction.x << ", " << line.direction.y << ", " << line.direction.z
+              << ")" << std::endl;
     return 0;
 }
 
-int test4_slope3() {
-    std::vector<Point3D> points = {
-        {1, 3, 9},    {2, 6, 12},   {3, 9, 15},   {4, 12, 18},  {5, 15, 21},
-        {6, 18, 24},  {7, 21, 27},  {8, 24, 30},  {9, 27, 33},  {10, 30, 36},
-        {11, 33, 39}, {12, 36, 42}, {13, 39, 45}, {14, 42, 48}, {15, 45, 51},
-        {16, 48, 54}, {17, 51, 57}, {18, 54, 60}, {19, 57, 63}, {20, 60, 66},
-        {21, 63, 69}, {22, 66, 72}, {23, 69, 75}, {24, 72, 78}, {25, 75, 81},
-        {26, 78, 84}, {27, 81, 87}, {28, 84, 90}, {29, 87, 93}, {30, 90, 96}};
+int test4_slope3()
+{
+    std::vector<Point3D> points = {{1, 3, 9},    {2, 6, 12},   {3, 9, 15},   {4, 12, 18},  {5, 15, 21},
+                                   {6, 18, 24},  {7, 21, 27},  {8, 24, 30},  {9, 27, 33},  {10, 30, 36},
+                                   {11, 33, 39}, {12, 36, 42}, {13, 39, 45}, {14, 42, 48}, {15, 45, 51},
+                                   {16, 48, 54}, {17, 51, 57}, {18, 54, 60}, {19, 57, 63}, {20, 60, 66},
+                                   {21, 63, 69}, {22, 66, 72}, {23, 69, 75}, {24, 72, 78}, {25, 75, 81},
+                                   {26, 78, 84}, {27, 81, 87}, {28, 84, 90}, {29, 87, 93}, {30, 90, 96}};
     // Fit a line to the points using RANSAC.
     Line3D line = fitLineRANSAC(points, 1.0, 1000);
 
     // Print the result.
-    std::cout << "Point: (" << line.point.x << ", " << line.point.y << ", "
-              << line.point.z << ")" << std::endl;
-    std::cout << "Direction: (" << line.direction.x << ", " << line.direction.y
-              << ", " << line.direction.z << ")" << std::endl;
+    std::cout << "Point: (" << line.point.x << ", " << line.point.y << ", " << line.point.z << ")"
+              << std::endl;
+    std::cout << "Direction: (" << line.direction.x << ", " << line.direction.y << ", " << line.direction.z
+              << ")" << std::endl;
     return 0;
 }
-void test() {
+void test()
+{
     test1();
     test2();
     test3();

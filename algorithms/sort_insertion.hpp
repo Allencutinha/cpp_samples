@@ -22,7 +22,8 @@
 // longer to sort larger lists. However, it is relatively simple to implement
 // and can be efficient for small lists or lists that are nearly sorted.
 
-void insertionSort(std::vector<int> &vec) {
+void insertionSort(std::vector<int>& vec)
+{
     if (vec.size() > 0) {
         // Iterate through the list, starting at the second element
         for (int i = 1; i < vec.size(); i++) {
@@ -46,10 +47,11 @@ void insertionSort(std::vector<int> &vec) {
 }
 
 namespace insertion_sort {
-int test() {
+int test()
+{
     std::vector<int> vec = {5, 2, 4, 1, 3};
     insertionSort(vec);
-    for (int i : vec) {
+    for (int i: vec) {
         std::cout << i << " ";
     }
     std::cout << std::endl;

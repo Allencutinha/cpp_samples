@@ -11,8 +11,8 @@ struct sLine {
 
 const int THETA_DIM = 360;
 
-void hough_buffer(uchar *inBuff, int height, int width,
-                  std::vector<sLine> &lines, int minLinePixels) {
+void hough_buffer(uchar* inBuff, int height, int width, std::vector<sLine>& lines, int minLinePixels)
+{
     // make sure the num of lines detected are zero before hough
     lines.clear();
     int aWidth = THETA_DIM;
@@ -41,11 +41,13 @@ void hough_buffer(uchar *inBuff, int height, int width,
 
     std::cout << "number of lines detected " << lines.size() << std::endl;
 }
-int im_round(double number) {
+int im_round(double number)
+{
     return (number >= 0) ? (int)(number + 0.5) : (int)(number - 0.5);
 }
 // accepts theta in degrees
-void drawLine(cv::Mat &img, double rho, double theta_) {
+void drawLine(cv::Mat& img, double rho, double theta_)
+{
 
     float theta = (theta_ * 3.14) / (180.0);
     cv::Point pt1, pt2;
@@ -58,16 +60,18 @@ void drawLine(cv::Mat &img, double rho, double theta_) {
     cv::line(img, pt1, pt2, cv::Scalar(0, 0, 255), 3, cv::LINE_AA);
 }
 
-void drawLines(cv::Mat const &image, std::vector<sLine> const &lines) {
+void drawLines(cv::Mat const& image, std::vector<sLine> const& lines)
+{
     cv::Mat drawImage = image.clone();
-    for (const auto &line : lines) {
+    for (const auto& line: lines) {
         drawLine(drawImage, line.rho, line.theta);
     }
     cv::namedWindow("lines");
     cv::imshow("lines", drawImage);
     cv::waitKey(500);
 }
-int hough_custom(cv::Mat &image) {
+int hough_custom(cv::Mat& image)
+{
     cv::Mat gray;
     cv::Mat grayOut;
     cv::Mat grayInt;
@@ -78,9 +82,9 @@ int hough_custom(cv::Mat &image) {
     }
     gray.copyTo(grayInt);
     gray.copyTo(grayOut);
-    uchar *inBuff = (uchar *)gray.data;
-    uchar *outBuff = (uchar *)grayOut.data;
-    uchar *intBuff = (uchar *)grayInt.data;
+    uchar* inBuff = (uchar*)gray.data;
+    uchar* outBuff = (uchar*)grayOut.data;
+    uchar* intBuff = (uchar*)grayInt.data;
     int height = image.rows;
     int width = image.cols;
 
@@ -103,7 +107,8 @@ int hough_custom(cv::Mat &image) {
 }
 
 namespace hough {
-cv::Mat readInput(std::string const &file) {
+cv::Mat readInput(std::string const& file)
+{
     cv::Mat img = cv::imread(file, 1);
     if (!img.empty()) {
         return (img);
@@ -112,7 +117,8 @@ cv::Mat readInput(std::string const &file) {
         exit(3);
     }
 }
-void test(int argc, char **argv) {
+void test(int argc, char** argv)
+{
     std::cout << "entered hough Test" << std::endl;
     if (argc < 3) {
         std::cout << "\n\n\t!!!!Hough line detection needs an input image file "

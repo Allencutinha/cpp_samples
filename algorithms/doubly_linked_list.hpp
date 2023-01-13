@@ -2,11 +2,12 @@
 #include <iostream>
 
 class Node {
-  public:
+public:
     int data;
-    Node *next;
-    Node *prev;
-    Node(int data) {
+    Node* next;
+    Node* prev;
+    Node(int data)
+    {
         this->data = data;
         this->next = nullptr;
         this->prev = nullptr;
@@ -14,19 +15,21 @@ class Node {
 };
 
 class DoublyLinkedList {
-  public:
-    Node *head;
-    Node *tail;
+public:
+    Node* head;
+    Node* tail;
     int size;
-    DoublyLinkedList() {
+    DoublyLinkedList()
+    {
         head = nullptr;
         tail = nullptr;
         size = 0;
     }
 
     // Insert a new node at the front of the list
-    void pushFront(int data) {
-        Node *newNode = new Node(data);
+    void pushFront(int data)
+    {
+        Node* newNode = new Node(data);
         newNode->next = head;
         if (head != nullptr) {
             head->prev = newNode;
@@ -39,8 +42,9 @@ class DoublyLinkedList {
     }
 
     // Insert a new node at the back of the list
-    void pushBack(int data) {
-        Node *newNode = new Node(data);
+    void pushBack(int data)
+    {
+        Node* newNode = new Node(data);
         newNode->prev = tail;
         if (tail != nullptr) {
             tail->next = newNode;
@@ -53,11 +57,12 @@ class DoublyLinkedList {
     }
 
     // Remove the node at the front of the list
-    void popFront() {
+    void popFront()
+    {
         if (head == nullptr) {
             return;
         }
-        Node *temp = head;
+        Node* temp = head;
         head = head->next;
         if (head != nullptr) {
             head->prev = nullptr;
@@ -67,11 +72,12 @@ class DoublyLinkedList {
     }
 
     // Remove the node at the back of the list
-    void popBack() {
+    void popBack()
+    {
         if (tail == nullptr) {
             return;
         }
-        Node *temp = tail;
+        Node* temp = tail;
         tail = tail->prev;
         if (tail != nullptr) {
             tail->next = nullptr;
@@ -81,8 +87,9 @@ class DoublyLinkedList {
     }
 
     // Print the contents of the list
-    void printList() {
-        Node *current = head;
+    void printList()
+    {
+        Node* current = head;
         while (current != nullptr) {
             std::cout << current->data << " ";
             current = current->next;
@@ -91,7 +98,8 @@ class DoublyLinkedList {
     }
 };
 namespace dll {
-int test() {
+int test()
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);

@@ -1,6 +1,7 @@
 #pragma once
 #include <opencv2/opencv.hpp>
-void createGaussianFilter(cv::Mat &gKernel, int filterSize, double sigma) {
+void createGaussianFilter(cv::Mat& gKernel, int filterSize, double sigma)
+{
     double r, s = ((float)filterSize / 2.0) * sigma * sigma;
 
     // sum is for normalization
@@ -25,7 +26,8 @@ void createGaussianFilter(cv::Mat &gKernel, int filterSize, double sigma) {
     }
 }
 
-void gaussianFilter(cv::Mat const &img, cv::Mat &out, int kernelSize = 3) {
+void gaussianFilter(cv::Mat const& img, cv::Mat& out, int kernelSize = 3)
+{
     cv::Mat kernel;
     int offset = kernelSize / 2;
     int rows = img.rows;
@@ -42,8 +44,7 @@ void gaussianFilter(cv::Mat const &img, cv::Mat &out, int kernelSize = 3) {
                         int i = row + r;
                         int j = col + c;
                         if (i >= 0 && i < img.rows && j >= 0 && j < img.cols) {
-                            sum += img.at<cv::Vec3b>(i, j)[ch] *
-                                   kernel.at<float>(r + offset, c + offset);
+                            sum += img.at<cv::Vec3b>(i, j)[ch] * kernel.at<float>(r + offset, c + offset);
                         }
                     }
                 }
@@ -53,7 +54,8 @@ void gaussianFilter(cv::Mat const &img, cv::Mat &out, int kernelSize = 3) {
     }
 }
 namespace gaussian {
-cv::Mat readInput(std::string const &file) {
+cv::Mat readInput(std::string const& file)
+{
     cv::Mat img = cv::imread(file, 1);
     if (!img.empty()) {
         return (img);
@@ -63,10 +65,10 @@ cv::Mat readInput(std::string const &file) {
     }
 }
 
-inline void test(int argc, char **argv) {
+inline void test(int argc, char** argv)
+{
     if (argc < 3) {
-        std::cout << "\n\n\t!!!!Gaussian needs an input image file path!!!\n\n"
-                  << std::endl;
+        std::cout << "\n\n\t!!!!Gaussian needs an input image file path!!!\n\n" << std::endl;
         exit(3);
     } else {
         // custom implementation test

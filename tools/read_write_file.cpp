@@ -1,7 +1,8 @@
 #include <fstream>
 #include <iostream>
 
-int main() {
+int main()
+{
     // Open the input file for reading
     std::ifstream input_file("../../data/input_sum.txt");
 

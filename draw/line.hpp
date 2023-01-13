@@ -1,14 +1,16 @@
 #pragma once
 #include <opencv2/opencv.hpp>
 
-inline void writePixel(cv::Mat &img, int x, int y) {
+inline void writePixel(cv::Mat& img, int x, int y)
+{
     if (x >= 0 && y >= 0 && x < img.rows && y < img.cols) {
-        cv::Vec3b &pix = img.at<cv::Vec3b>(x, y);
+        cv::Vec3b& pix = img.at<cv::Vec3b>(x, y);
         pix = cv::Vec3b(0, 255, 0);
     }
 }
 
-void drawLine(cv::Mat &img, cv::Point2d const &pt1, cv::Point2d const &pt2) {
+void drawLine(cv::Mat& img, cv::Point2d const& pt1, cv::Point2d const& pt2)
+{
     // Coordinates of the two points
     int x1 = pt1.x, y1 = pt1.y;
     int x2 = pt2.x, y2 = pt2.y;
@@ -55,7 +57,8 @@ void drawLine(cv::Mat &img, cv::Point2d const &pt1, cv::Point2d const &pt2) {
     }
 }
 
-inline void test_line() {
+inline void test_line()
+{
     cv::Mat img = cv::Mat::zeros(400, 800, CV_8UC3);
     // horizontal line
     drawLine(img, cv::Point2d(200, 300), cv::Point2d(200, 500));

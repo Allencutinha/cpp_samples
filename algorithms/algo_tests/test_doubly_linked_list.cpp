@@ -1,7 +1,8 @@
 #include "../doubly_linked_list.hpp" // Include the header file for the doubly linked list implementation
 #include <gtest/gtest.h>
 
-TEST(DoublyLinkedListTest, TestPushFront) {
+TEST(DoublyLinkedListTest, TestPushFront)
+{
     DoublyLinkedList list;
     list.pushFront(1);
     list.pushFront(2);
@@ -11,7 +12,8 @@ TEST(DoublyLinkedListTest, TestPushFront) {
     EXPECT_EQ(list.size, 3);
 }
 
-TEST(DoublyLinkedListTest, TestPushBack) {
+TEST(DoublyLinkedListTest, TestPushBack)
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);
@@ -21,7 +23,8 @@ TEST(DoublyLinkedListTest, TestPushBack) {
     EXPECT_EQ(list.size, 3);
 }
 
-TEST(DoublyLinkedListTest, TestPopFront) {
+TEST(DoublyLinkedListTest, TestPopFront)
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);
@@ -32,7 +35,8 @@ TEST(DoublyLinkedListTest, TestPopFront) {
     EXPECT_EQ(list.size, 2);
 }
 
-TEST(DoublyLinkedListTest, TestPopBack) {
+TEST(DoublyLinkedListTest, TestPopBack)
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);
@@ -43,7 +47,8 @@ TEST(DoublyLinkedListTest, TestPopBack) {
     EXPECT_EQ(list.size, 2);
 }
 
-TEST(DoublyLinkedListTest, TestPrintList) {
+TEST(DoublyLinkedListTest, TestPrintList)
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);
@@ -54,7 +59,8 @@ TEST(DoublyLinkedListTest, TestPrintList) {
     EXPECT_EQ(output, "1 2 3 \n");
 }
 
-TEST(DoublyLinkedListTest, TestSize) {
+TEST(DoublyLinkedListTest, TestSize)
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);
@@ -65,7 +71,8 @@ TEST(DoublyLinkedListTest, TestSize) {
     EXPECT_EQ(list.size, 1);
 }
 
-TEST(DoublyLinkedListTest, TestMultiplePushBack) {
+TEST(DoublyLinkedListTest, TestMultiplePushBack)
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);
@@ -75,7 +82,8 @@ TEST(DoublyLinkedListTest, TestMultiplePushBack) {
     EXPECT_EQ(list.size, 3);
 }
 
-TEST(DoublyLinkedListTest, TestMultiplePopFront) {
+TEST(DoublyLinkedListTest, TestMultiplePopFront)
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);
@@ -87,7 +95,8 @@ TEST(DoublyLinkedListTest, TestMultiplePopFront) {
     EXPECT_EQ(list.size, 1);
 }
 
-TEST(DoublyLinkedListTest, TestMultiplePopBack) {
+TEST(DoublyLinkedListTest, TestMultiplePopBack)
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);
@@ -99,7 +108,8 @@ TEST(DoublyLinkedListTest, TestMultiplePopBack) {
     EXPECT_EQ(list.size, 1);
 }
 
-TEST(DoublyLinkedListTest, TestPushFrontPointers) {
+TEST(DoublyLinkedListTest, TestPushFrontPointers)
+{
     DoublyLinkedList list;
     list.pushFront(1);
     list.pushFront(2);
@@ -110,7 +120,8 @@ TEST(DoublyLinkedListTest, TestPushFrontPointers) {
     EXPECT_EQ(list.tail->next, nullptr);
 }
 
-TEST(DoublyLinkedListTest, TestPushBackPointers) {
+TEST(DoublyLinkedListTest, TestPushBackPointers)
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);
@@ -121,7 +132,8 @@ TEST(DoublyLinkedListTest, TestPushBackPointers) {
     EXPECT_EQ(list.tail->next, nullptr);
 }
 
-TEST(DoublyLinkedListTest, TestPopFrontPointers) {
+TEST(DoublyLinkedListTest, TestPopFrontPointers)
+{
     DoublyLinkedList list;
     list.pushBack(1);
     list.pushBack(2);

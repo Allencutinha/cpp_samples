@@ -8,13 +8,13 @@ float Gaussian[5][5] = {{2.f, 4.f, 5.f, 4.f, 2.f},
 float sobelx[3][3] = {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}};
 float sobely[3][3] = {{1, 2, 1}, {0, 0, 0}, {-1, -2, -1}};
 
-void detectCannyEdges(uchar *inBuff, uchar *outBuff, uchar *intBuff, int height,
-                      int width) {
+void detectCannyEdges(uchar* inBuff, uchar* outBuff, uchar* intBuff, int height, int width)
+{
 
-    float *G = new float[height * width];
-    float *GTemp = new float[width * height];
-    uchar *tempBuff = new uchar[height * width];
-    uchar *edgeDir = new uchar[height * width];
+    float* G = new float[height * width];
+    float* GTemp = new float[width * height];
+    uchar* tempBuff = new uchar[height * width];
+    uchar* edgeDir = new uchar[height * width];
 
     // Apply gaussian filter
     for (int row = 2; row < height - 2; row++) {
@@ -22,8 +22,7 @@ void detectCannyEdges(uchar *inBuff, uchar *outBuff, uchar *intBuff, int height,
             float sum = 0;
             for (int r = 0; r < 5; r++) {
                 for (int c = 0; c < 5; c++) {
-                    sum += inBuff[(row + r - 2) * width + (col + c - 2)] *
-                           Gaussian[r][c];
+                    sum += inBuff[(row + r - 2) * width + (col + c - 2)] * Gaussian[r][c];
                 }
             }
             tempBuff[row * width + col] = (uchar)(sum / 159);
@@ -39,15 +38,12 @@ void detectCannyEdges(uchar *inBuff, uchar *outBuff, uchar *intBuff, int height,
             float Gy = 0;
             for (int r = 0; r < 3; r++) {
                 for (int c = 0; c < 3; c++) {
-                    Gx += tempBuff[(row + r - 1) * width + (col + c - 1)] *
-                          sobelx[r][c];
-                    Gy += tempBuff[(row + r - 1) * width + (col + c - 1)] *
-                          sobely[r][c];
+                    Gx += tempBuff[(row + r - 1) * width + (col + c - 1)] * sobelx[r][c];
+                    Gy += tempBuff[(row + r - 1) * width + (col + c - 1)] * sobely[r][c];
                 }
             }
             float tempDiff = 0;
-            tempDiff = GTemp[row * width + col] = G[row * width + col] =
-                sqrt(Gx * Gx + Gy * Gy);
+            tempDiff = GTemp[row * width + col] = G[row * width + col] = sqrt(Gx * Gx + Gy * Gy);
             if (tempDiff > maxDiff) {
                 maxDiff = tempDiff;
             }
@@ -57,17 +53,13 @@ void detectCannyEdges(uchar *inBuff, uchar *outBuff, uchar *intBuff, int height,
 
             uchar newAngle = 0;
             // assign edge directions to bins of 0, 45, 90 and 135
-            if (((thetaDeg <= 22.5) && (thetaDeg >= -22.5)) ||
-                ((thetaDeg >= 157.5) && (thetaDeg <= -157.5)))
+            if (((thetaDeg <= 22.5) && (thetaDeg >= -22.5)) || ((thetaDeg >= 157.5) && (thetaDeg <= -157.5)))
                 newAngle = 0;
-            if (((thetaDeg > 22.5) && (thetaDeg < 67.5)) ||
-                ((thetaDeg < -112.5) && (thetaDeg > -157.5)))
+            if (((thetaDeg > 22.5) && (thetaDeg < 67.5)) || ((thetaDeg < -112.5) && (thetaDeg > -157.5)))
                 newAngle = 45;
-            if (((thetaDeg >= 67.5) && (thetaDeg <= 112.5)) ||
-                ((thetaDeg < -67.5) && (thetaDeg >= -112.5)))
+            if (((thetaDeg >= 67.5) && (thetaDeg <= 112.5)) || ((thetaDeg < -67.5) && (thetaDeg >= -112.5)))
                 newAngle = 90;
-            if (((thetaDeg > 112.5) && (thetaDeg < 157.5)) ||
-                ((thetaDeg < -22.5) && (thetaDeg > -67.5)))
+            if (((thetaDeg > 112.5) && (thetaDeg < 157.5)) || ((thetaDeg < -22.5) && (thetaDeg > -67.5)))
                 newAngle = 135;
 
             edgeDir[row * width + col] = newAngle;
@@ -135,8 +127,7 @@ void detectCannyEdges(uchar *inBuff, uchar *outBuff, uchar *intBuff, int height,
                     // neighbours are a strong edge
                     for (int r = 0; r < 3; r++) {
                         for (int c = 0; c < 3; c++) {
-                            if (GTemp[(row + r - 1) * width + (col + c - 1)] ==
-                                255) {
+                            if (GTemp[(row + r - 1) * width + (col + c - 1)] == 255) {
                                 GTemp[row * width + col] = 255;
                                 outBuff[row * width + col] = 255;
                             }
@@ -155,7 +146,8 @@ void detectCannyEdges(uchar *inBuff, uchar *outBuff, uchar *intBuff, int height,
     delete[] edgeDir;
 }
 namespace canny {
-void test_canny(cv::Mat const &image) {
+void test_canny(cv::Mat const& image)
+{
     std::cout << "entered Canny custom" << std::endl;
     cv::Mat result;
     cv::Mat grayImage;
@@ -170,19 +162,19 @@ void test_canny(cv::Mat const &image) {
         image.copyTo(result);
         grayImage.copyTo(intImage);
     }
-    uchar *inBuff = (uchar *)grayImage.data;
-    uchar *outBuff = (uchar *)result.data;
-    uchar *intBuff = (uchar *)intImage.data;
+    uchar* inBuff = (uchar*)grayImage.data;
+    uchar* outBuff = (uchar*)result.data;
+    uchar* intBuff = (uchar*)intImage.data;
     detectCannyEdges(inBuff, outBuff, intBuff, image.rows, image.cols);
     cv::namedWindow("canny");
     cv::imshow("canny", result);
     cv::waitKey(2000);
 }
 
-void test(int argc, char **argv) {
+void test(int argc, char** argv)
+{
     if (argc < 3) {
-        std::cout << "\n\n\t!!!!Gaussian needs an input image file path!!!\n\n"
-                  << std::endl;
+        std::cout << "\n\n\t!!!!Gaussian needs an input image file path!!!\n\n" << std::endl;
         exit(3);
     } else {
         cv::Mat img = cv::imread(argv[2], 0);

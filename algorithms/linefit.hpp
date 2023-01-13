@@ -19,8 +19,8 @@ struct Line {
     double b;
 };
 
-Line fitLine(const std::vector<Point> &points, int numIterations = 300,
-             double inlierThreshold = 0.01) {
+Line fitLine(const std::vector<Point>& points, int numIterations = 300, double inlierThreshold = 0.01)
+{
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(0, points.size() - 1);
@@ -44,9 +44,8 @@ Line fitLine(const std::vector<Point> &points, int numIterations = 300,
         // Count the number of inliers (points that are within inlierThreshold
         // of the line)
         int numInliers = 0;
-        for (const auto &point : points) {
-            double error = std::abs(point.y - line.m * point.x - line.b) /
-                           std::sqrt(line.m * line.m + 1);
+        for (const auto& point: points) {
+            double error = std::abs(point.y - line.m * point.x - line.b) / std::sqrt(line.m * line.m + 1);
             if (error < inlierThreshold) {
                 numInliers++;
             }
@@ -62,7 +61,8 @@ Line fitLine(const std::vector<Point> &points, int numIterations = 300,
     return bestLine;
 }
 
-void test() {
+void test()
+{
     std::cout << "Line fiting Test :\n";
     // Test fitting a line to a set of points with no noise
     {
@@ -86,9 +86,8 @@ void test() {
         std::cout << "y = " << line.m << "x + " << line.b << std::endl;
     }
     {
-        std::vector<Point> points = {{8, 3}, {2, 10}, {11, 3}, {6, 6},
-                                     {5, 8}, {4, 12}, {12, 1}, {9, 4},
-                                     {6, 9}, {1, 14}};
+        std::vector<Point> points = {
+            {8, 3}, {2, 10}, {11, 3}, {6, 6}, {5, 8}, {4, 12}, {12, 1}, {9, 4}, {6, 9}, {1, 14}};
 
         Line line = fitLine(points);
         std::cout << "y = " << line.m << "x + " << line.b << std::endl;

@@ -2,15 +2,16 @@
 #include "line.hpp"
 #include <opencv2/opencv.hpp>
 
-inline void drawPolygon(cv::Mat &img, std::vector<cv::Point2d> const &poly) {
+inline void drawPolygon(cv::Mat& img, std::vector<cv::Point2d> const& poly)
+{
     int n = poly.size();
     for (int i = 0; i < n; ++i) {
         drawLine(img, poly[i % n], poly[(i + 1) % n]);
     }
 }
 
-inline void drawCirclePoly(cv::Mat &img, cv::Point2d const &center,
-                           int radius) {
+inline void drawCirclePoly(cv::Mat& img, cv::Point2d const& center, int radius)
+{
     int count = 3.14 * radius / 4;
     double inc = 2 * 3.14 / double(count);
     double angle = 0.;
@@ -24,7 +25,8 @@ inline void drawCirclePoly(cv::Mat &img, cv::Point2d const &center,
     drawPolygon(img, poly);
 }
 
-inline void test_polygon() {
+inline void test_polygon()
+{
     cv::Mat img = cv::Mat::zeros(400, 800, CV_8UC3);
     std::vector<cv::Point2d> poly;
     // triangle

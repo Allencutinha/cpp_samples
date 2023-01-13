@@ -5,7 +5,8 @@
 #include <opencv2/opencv.hpp> // for cv::Mat, etc.
 
 // Function to apply the median filter to an image
-void medianFilter(cv::Mat &image, int kernelSize = 3) {
+void medianFilter(cv::Mat& image, int kernelSize = 3)
+{
     // Create a kernel to store the neighboring pixels
     std::vector<uchar> kernel; //(kernelSize * kernelSize);
 
@@ -40,7 +41,8 @@ void medianFilter(cv::Mat &image, int kernelSize = 3) {
 }
 
 namespace medianfilter {
-cv::Mat readInput(std::string const &file) {
+cv::Mat readInput(std::string const& file)
+{
     cv::Mat img = cv::imread(file, 0);
     if (!img.empty()) {
         return (img);
@@ -50,10 +52,10 @@ cv::Mat readInput(std::string const &file) {
     }
 }
 
-void test(int argc, char **argv) {
+void test(int argc, char** argv)
+{
     if (argc < 3) {
-        std::cout << "\n\n\t!!!!Median needs an input image file path!!!\n\n"
-                  << std::endl;
+        std::cout << "\n\n\t!!!!Median needs an input image file path!!!\n\n" << std::endl;
         exit(3);
     } else {
         // custom implementation test

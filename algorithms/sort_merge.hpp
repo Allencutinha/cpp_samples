@@ -37,7 +37,8 @@
 // 9. Set the remaining elements of the original array to the remaining elements
 // of the right half.
 
-void merge(std::vector<int> &arr, int left, int middle, int right) {
+void merge(std::vector<int>& arr, int left, int middle, int right)
+{
     // Calculate the sizes of the two halves
     int size1 = middle - left + 1;
     int size2 = right - middle;
@@ -85,7 +86,8 @@ void merge(std::vector<int> &arr, int left, int middle, int right) {
 // array is sorted.
 
 // Iterative function to sort an array using merge sort
-void merge_sort(std::vector<int> &arr) {
+void merge_sort(std::vector<int>& arr)
+{
     // Determine the size of the array
     int size = arr.size();
 
@@ -104,13 +106,14 @@ void merge_sort(std::vector<int> &arr) {
     }
 }
 namespace merge_sort_test {
-int test() {
+int test()
+{
     // Test the merge sort function
     std::vector<int> arr = {5, 2, 4, 6, 1, 3};
     merge_sort(arr);
 
     // Print the sorted array
-    for (int x : arr)
+    for (int x: arr)
         std::cout << x << " ";
     std::cout << std::endl;
 
