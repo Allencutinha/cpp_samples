@@ -108,24 +108,19 @@ void LinkedList<T>::insertOrdered(const T& newData)
         // Check the last node and insert there if newNode > tail
         if (newNode->data >= back()) {
             pushBack(newNode->data);
-            // std::cout << "**** Inserted at tail: " << newNode->data << std::endl;
         }
         // Check the first node and insert there if newNode < head
         else if (newNode->data <= front()) {
             pushFront(newNode->data);
-            // std::cout << "**** Inserted at head: " << newNode->data << std::endl;
         } else {
             // Traverse the ordered list to find a place to insert the new node
             Node* currNode = getHeadPtr();
-            // std::cout << "** Traversing from head: " << currNode->data <<
-            // std::endl;
             bool inserted = false;
 
             while (!inserted) {
                 // Insert the node before currNode if newNode <= currNode or it's a
                 // nullptr (at end of list)
                 if (newNode->data <= currNode->data) {
-                    // std::cout << "**** Inserting before " << currNode->data;
 
                     // update the prev and next links on the newNode
                     newNode->prev = currNode->prev;
@@ -140,8 +135,6 @@ void LinkedList<T>::insertOrdered(const T& newData)
 
                     size_++;
                     inserted = true;
-
-                    // std::cout << " and after " << currNode->data << std::endl;
                 }
                 // move to next node
                 currNode = currNode->next;
@@ -240,39 +233,27 @@ LinkedList<T> LinkedList<T>::merge(const LinkedList<T>& other) const
 
     // first: sort the two lists
     if (!left.isSorted()) {
-        // std::cout << "** Sorting left list **" << std::endl;
         left.mergeSort();
     }
     if (!right.isSorted()) {
-        // std::cout << "** Sorting right list **" << std::endl;
         right.mergeSort();
     }
 
     // Iterate through left and right, popping off the lower one to the new merge
     // linked list
     while ((left.size() + right.size()) > 0) {
-        // std::cout << "*** Merging with size = " << (left.size() + right.size() )
-        // << std::endl;
 
         if (left.empty()) {
-            // std::cout << "* Left is empty.  Adding from right: " << right.front()
-            // << std::endl;
             merged.pushBack(right.front());
             right.popFront();
         } else if (right.empty()) {
-            // std::cout << "* Right is empty.  Adding from left: " << left.front() <<
-            // std::endl;
             merged.pushBack(left.front());
             left.popFront();
         } else {
             if (left.front() <= right.front()) {
-                // std::cout << "* Left smaller than right, adding from left: " <<
-                // left.front() << std::endl;
                 merged.pushBack(left.front());
                 left.popFront();
             } else {
-                // std::cout << "* Right smaller than left, adding from right: " <<
-                // right.front() << std::endl;
                 merged.pushBack(right.front());
                 right.popFront();
             }
