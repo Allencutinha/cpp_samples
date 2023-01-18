@@ -103,7 +103,6 @@ void LinkedList<T>::insertOrdered(const T& newData)
 
     if (empty()) {
         pushFront(newNode->data);
-        // std::cout << "**** Inserted at head: " << newNode->data << std::endl;
     } else {
         // Check the last node and insert there if newNode > tail
         if (newNode->data >= back()) {
@@ -141,7 +140,6 @@ void LinkedList<T>::insertOrdered(const T& newData)
             }
         }
     }
-    // Check value
 }
 
 /********************************************************************
