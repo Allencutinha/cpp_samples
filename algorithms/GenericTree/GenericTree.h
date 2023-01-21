@@ -1,9 +1,9 @@
 
 /**
  * @file GenericTree.h
- * University of Illinois CS 400, MOOC 2, Week 3: Generic Tree
+ * Generic Tree
  *
- * @author Eric Huber
+ * @author Allen Cutinha
  *
  **/
 

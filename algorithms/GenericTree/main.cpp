@@ -1,8 +1,7 @@
 /**
  * @file main.cpp
- * University of Illinois CS 400, MOOC 2, Week 3: Generic Tree
  *
- * @author Eric Huber
+ * @author Allen Cutinha
  **/
 
 #include <iostream>

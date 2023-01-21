@@ -1,11 +1,9 @@
 
 /**
  * @file GenericTreeExercises.h
- * University of Illinois CS 400, MOOC 2, Week 3: Generic Tree
- * Spring 2019
- *                       STUDENT STARTER FILE
+ * Generic Tree
  *
- * @author Eric Huber - University of Illinois staff
+ * @author Allen Cutinha
  *
  **/
 
