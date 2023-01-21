@@ -101,7 +101,6 @@ static void treeFactory(GenericTree<int>& tree)
     tree.clear();
 
     // Make a current_node, let it point to root node of Generic Tree
-    // auto root_node = tree.getRootPtr();
     GenericTree<int>::TreeNode* root_node = tree.getRootPtr();
 
     // std::cout << "Type of root node" << typeid(root_node).name() << std::endl;
@@ -114,9 +113,6 @@ static void treeFactory(GenericTree<int>& tree)
     auto node_8 = tree.getRootPtr()->addChild(8);
 
     tree.getRootPtr()->addChild(15);
-
-    //(*root_node).addChild( 8 );
-
 
     // node 8 has two children, 16 and 23
     auto node_16 = node_8->addChild(16);
@@ -361,8 +357,6 @@ std::vector<T> traverseLevels(GenericTree<T>& tree)
     // ...
 
     results.push_back(rootNodePtr->data);
-
-    // auto current_node = rootNodePtr;
 
     std::vector<TreeNode*> childPtrs;
     std::vector<TreeNode*> next_level_childPtrs;
