@@ -123,7 +123,6 @@ void GridGraph::removePoint(const IntPair& p1)
     // )
     for (auto neighbor_iter = originalNeighbors.begin(); neighbor_iter != originalNeighbors.end();
          neighbor_iter++) {
-        // std::cout << "Remove edge between " << *neighbor_iter << " and " << p1 << std::endl;
         // remove edge
         removeEdge(*neighbor_iter, p1);
     }
