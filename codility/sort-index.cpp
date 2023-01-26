@@ -1,7 +1,7 @@
-#include<algorithm>
+#include <algorithm>
 #include <vector>
-#include<iostream>
-    using namespace std;
+#include <iostream>
+using namespace std;
 
 bool cmp(pair<int, int>& a, pair<int, int>& b)
 {
@@ -26,17 +26,16 @@ vector<int> solution(vector<int>& A)
 
 int main()
 {
-    std::vector<int> A = {1,99,4,56,78};
+    std::vector<int> A = {1, 99, 4, 56, 78};
     for (int i = 0; i < A.size(); ++i) {
         std::cout << A[i] << "-" << i << "\n";
     }
 
     std::vector<int> indi = solution(A);
-    
-    //std::sort(A.begin(),A.end(), greater<>());
+
+    // std::sort(A.begin(),A.end(), greater<>());
     std::cout << std::endl;
     for (int i = 0; i < A.size(); ++i) {
         std::cout << A[indi[i]] << "-" << indi[i] << "\n";
     }
-
 }
