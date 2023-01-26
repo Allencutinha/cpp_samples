@@ -31,7 +31,8 @@ Write a function:
 
 vector<int> solution(int N, vector<int> &A);
 
-that, given an integer N and a non-empty array A consisting of M integers, returns a sequence of integers representing the values of the counters.
+that, given an integer N and a non-empty array A consisting of M integers, returns a sequence of integers
+representing the values of the counters.
 
 Result array should be returned as a vector of integers.
 
@@ -51,24 +52,29 @@ Write an efficient algorithm for the following assumptions:
 N and M are integers within the range [1..100,000];
 each element of array A is an integer within the range [1..N + 1].
 */
-vector<int> solution(int N, vector<int> &A) {
+vector<int> solution(int N, vector<int>& A)
+{
     // Implement your solution here
     int maxElem = 0;
     int maxCount = 0;
-    vector<int> c(N,0);
-    for(auto e : A){
-        if(N == e-1){
+    vector<int> c(N, 0);
+    for (auto e: A) {
+        if (N == e - 1) {
             maxElem = maxCount;
-        }else{
-            if(c[e-1] < maxElem){c[e-1]  = maxElem+1;}else{c[e-1]++;}
-            if(c[e-1] > maxCount){
-                maxCount = c[e-1]; 
+        } else {
+            if (c[e - 1] < maxElem) {
+                c[e - 1] = maxElem + 1;
+            } else {
+                c[e - 1]++;
+            }
+            if (c[e - 1] > maxCount) {
+                maxCount = c[e - 1];
             }
         }
     }
-    for(auto &e:c){
-        if(e<maxElem){
-            e=maxElem;
+    for (auto& e: c) {
+        if (e < maxElem) {
+            e = maxElem;
         }
     }
     return c;
