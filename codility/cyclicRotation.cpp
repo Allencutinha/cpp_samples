@@ -61,3 +61,13 @@ vector<int> solution(vector<int>& A, int K)
     }
     return B;
 }
+
+vector<int> solution2(vector<int> &A, int K) {
+    // Implement your solution here
+    int N = A.size();
+    if(0 == K || 0 == N || 0 == K%N){ return A;}
+    vector<int> B = A;
+    K = K%N;
+    for(int i = 0; i<N;++i){B[(K+i)%N] = A[i];}
+    return B;
+}
