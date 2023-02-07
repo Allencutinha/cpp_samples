@@ -1,11 +1,11 @@
 /*
-Given a string s, return the longest 
+Given a string s, return the longest
 palindromic
- 
+
 substring
  in s.
 
- 
+
 
 Example 1:
 
@@ -16,7 +16,7 @@ Example 2:
 
 Input: s = "cbbd"
 Output: "bb"
- 
+
 
 Constraints:
 
@@ -27,12 +27,10 @@ class Solution {
 public:
     int mx = INT_MIN;
     string ans = "";
-    int isPalindrome(string &s,int i,int j)
+    int isPalindrome(string& s, int i, int j)
     {
-        while(i<j)
-        {
-            if(s[i]!=s[j])
-            {
+        while (i < j) {
+            if (s[i] != s[j]) {
                 return 0;
             }
             i++;
@@ -40,27 +38,24 @@ public:
         }
         return 1;
     }
-    void solve(int n,string &s)
+    void solve(int n, string& s)
     {
         int cnt = 0;
-        for(int i=0;i<n;i++)
-        {
-            for(int j=i;j<n;j++)
-            {
-                if(isPalindrome(s,i,j))
-                {
-                    if(j-i+1 > mx)
-                    {
-                        ans = s.substr(i,j-i+1);
-                        mx = j-i+1;
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                if (isPalindrome(s, i, j)) {
+                    if (j - i + 1 > mx) {
+                        ans = s.substr(i, j - i + 1);
+                        mx = j - i + 1;
                     }
                 }
             }
         }
     }
-    string longestPalindrome(string s) {
+    string longestPalindrome(string s)
+    {
         int n = s.size();
-        solve(n,s);
+        solve(n, s);
         return ans;
     }
 };
