@@ -11,8 +11,9 @@ public:
 
             for (int i = r; i < s.size(); i += inc) {
                 ans += s[i];
-                if (r > 0 && r < numRows - 1 && (i + inc - (2 * r)) < s.size())
+                if (r > 0 && r < numRows - 1 && (i + inc - (2 * r)) < s.size()) {
                     ans += s[i + inc - (2 * r)];
+                }
             }
         }
         return ans;
