@@ -31,16 +31,19 @@ Follow up: Could you solve it without converting the integer to a string?
 */
 class Solution {
 public:
-    bool isPalindrome(int x)
-    {
-        unsigned int rev = 0;
-        int ref = x;
-        if (x < 0)
-            return false;
-        while (x) {
-            rev = x % 10 + rev * 10;
-            x = x / 10;
+    bool isPalindrome(int x) {
+     long long  int d=x,m=0,z;
+		for (int i = x; i > 0; i=i/10)
+		{z=i%10;
+	     m=m*10+z;
+			
+		}
+		if(d==m)
+        {
+            return true;
         }
-        return (ref == rev) ? true : false;
+        else{
+            return false;
+        }
     }
 };
