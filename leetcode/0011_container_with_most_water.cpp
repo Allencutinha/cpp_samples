@@ -30,6 +30,8 @@ n == height.length
 0 <= height[i] <= 104
 */
 
+
+
 class Solution {
 public:
     int maxArea(vector<int>& height)
